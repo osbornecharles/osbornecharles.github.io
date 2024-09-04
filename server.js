@@ -1,13 +1,20 @@
 import { createServer } from 'node:http';
 import * as fs from 'node:fs';
 import * as process from 'node:process';
+import buttonClick from './test.js';
+import { alert2, alert3 } from './test.js';
+import * as everything from './test.js';
+
 
 const hostname = '127.0.0.1';
 const port = 3000;
 
 let contentEncoding;
 
-console.log('test');
+console.log('everything: ', everything);
+console.log('alert: ', buttonClick);
+console.log('alert2: ', alert2);
+console.log('alert3: ', alert3);
 
 function parseRequest(request) {
   let headers = request.headers;
