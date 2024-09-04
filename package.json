@@ -1,2 +1,7 @@
-{"type":"module"}
+{
+  "type":"module",
+  "scripts": {
+    "localServer": "node server.js"
+  }
+}
 
