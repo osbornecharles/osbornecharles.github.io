@@ -7,6 +7,8 @@ const port = 3000;
 
 let contentEncoding;
 
+console.log('test');
+
 function parseRequest(request) {
   let headers = request.headers;
   if (headers.hasOwn('accept-encoding')) {
