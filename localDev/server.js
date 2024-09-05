@@ -1,20 +1,10 @@
 import { createServer } from 'node:http';
 import * as fs from 'node:fs';
-import * as process from 'node:process';
-import buttonClick from '#root/test';
-import { alert2, alert3 } from '#root/test';
-import * as everything from '#root/test';
-
 
 const hostname = '127.0.0.1';
 const port = 3000;
 
 let contentEncoding;
-
-console.log('everything: ', everything);
-console.log('alert: ', buttonClick);
-console.log('alert2: ', alert2);
-console.log('alert3: ', alert3);
 
 function parseURL(request) {
   if (request.url == '/') {
@@ -52,8 +42,13 @@ const server = createServer((req, res) => {
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
     }
     else if (req.url.endsWith('.js')) {
-      console.log('js');
       res.setHeader('Content-Type', 'application/javascript');
+    }
+    else if (req.url.endsWith('.css')) {
+      res.setHeader('Content-Type', 'text/css');
+    }
+    else if (req.url.endsWith('.jpg')) {
+      res.setHeader('Content-Type', 'image/jpeg');
     }
     if (contentEncoding) {
       res.setHeader('Content-Encoding', contentEncoding);

@@ -5,13 +5,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>This Little Site of Mine</title>
+    <link type="text/css" rel="stylesheet" href="./style.css">
   </head>
   <body>
-    <div>
-      Congratulations, You Are Page Visitor Number: <span id="pageVisitsNumber"></span>
+    <div id="background">
     </div>
-    <div>
-      Welcome to my site, click this button: <button id="siteButton"></button> 
+    <div id="fixed-ancestor">
+      <div id="items-container">
+        <div id="personal-info-item">
+          <div>
+            Congratulations, You Are Page Visitor Number: <span id="pageVisitsNumber"></span>
+          </div>
+        </div>
+        <div id="my-sites-item">
+          More to come ...
+        </div>
+        <div id="technical-info-item">
+          This page was created with ... 
+        </div>
+      </div>
     </div>
     <script type="module" src="./index.js">
     </script>
