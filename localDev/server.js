@@ -20,16 +20,20 @@ function parseURL(request) {
   if (request.url == '/') {
     request.url = '/index.html';
   }
+  //all static files are in src 
+  request.url = `./src${request.url}`;
 }
 
 function parseHeaders(request) {
   let headers = request.headers;
-  if (headers.hasOwn('accept-encoding')) {
+  /**
+  if (headers.hasOwnProperty('accept-encoding')) {
     let encodings = headers['accept-encoding'].split(',');
     if (encodings.includes('gzip')) {
       contentEncoding = 'gzip';
     }
   }
+  */
 }
 
 function parseRequest(request) {
@@ -38,22 +42,25 @@ function parseRequest(request) {
 };
 
 const server = createServer((req, res) => {
+  console.log(`request to: ${req.url}`);
   parseRequest(req);
   fs.readFile(`${req.url}`, (err, data) => {
     if (err) {
       throw err;
     }
     if (req.url.endsWith('.html')) {
-      res.setHeader = ('Content-Type', 'text/html; charset=utf-8');
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
     }
     else if (req.url.endsWith('.js')) {
-      res.setHeader = ('Content-Type', 'application/javascript');
+      console.log('js');
+      res.setHeader('Content-Type', 'application/javascript');
     }
     if (contentEncoding) {
       res.setHeader('Content-Encoding', contentEncoding);
     }
     res.statusCode = 200;
-    res.write(data)
+    console.log(`response header: ${res.getHeader('Content-Type')}`)
+    res.write(data);
     res.end();
   });
 });
