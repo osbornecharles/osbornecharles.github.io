@@ -1,7 +1,10 @@
 {
   "type":"module",
   "scripts": {
-    "localServer": "node server.js"
+    "localServer": "node localDev/server.js"
+  },
+  "imports": {
+    "#root/*": "./src/*.js"
   }
 }
 
