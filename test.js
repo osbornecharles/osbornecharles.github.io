@@ -1,7 +1,7 @@
-export default alert;
+export default alerter;
 export { alert2 };
 
-function alert() {
+function alerter() {
   alert('clicked button');
 }
 
