@@ -2,30 +2,28 @@ import * as utils from './utils.js';
 
 console.log('entry script, this JS runs on the client side');
 
-const backgroundPrefix = 'background';
-const localhostURL = 'localhost:3000';
-const domain = localhostURL;
 const numBackgroundImages = 5;
 const backgroundImages = [];
 const backgroundElementID = 'background';
-let currentImage = 1;
+
+window.addEventListener("load", (event) => {
+  for (let img = 1; img <= numBackgroundImages; img++) {
+    const elem = document.getElementById(`${backgroundElementID}${img}`);
+    const boundingBox = elem.getBoundingClientRect();
+    const ystart = boundingBox.top + window.scrollY;
+    const yend = boundingBox.bottom + window.scrollY; 
+    backgroundImages[img] = { elem, ystart, yend };
+  } 
+  console.log(backgroundImages);
+});
 
 const onScroll = () => {
-  const imageHeight = 1000;
-  const maxHeight = numBackgroundImages * imageHeight;
   const currentScroll = window.scrollY;
-  let displayImage;
-  if (currentScroll >= maxHeight) {
-    displayImage = numBackgroundImages;
-  }
-  else {
-    displayImage = Math.floor(currentScroll / imageHeight) + 1;
-  }
-  if (displayImage !== currentImage) {
-    const backgroundURL = `./${backgroundPrefix}${displayImage}.jpg`
-    document.getElementById(backgroundElementID).style.backgroundImage = `url(${backgroundURL})`;
-    currentImage = displayImage;
-  }
+  let centerX = document.documentElement.clientWidth / 2;
+  let centerY = document.documentElement.clientHeight / 2;
+  console.log(`Current scroll: ${currentScroll}`);
+  console.log(`centerx: ${centerX}`);
+  console.log(`centery: ${centerY}`);
 }
 
 document.addEventListener('scroll', utils.debounce(onScroll), { passive: true });

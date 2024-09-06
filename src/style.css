@@ -3,14 +3,42 @@ body {
   padding: 0;
 }
 
-#background {
-  position: fixed;
-  top: 0;
-  left: 0;
+#backgrounds-container {
   width: 100vw;
-  height: 100vh;
-  background-repeat: round;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.background {
+  width: 100vw;
+  background-size: cover;
+  margin: 50px 0;
+}
+
+#background1 {
+  aspect-ratio: 843/ 632;
   background-image: url('./background1.jpg');
+}
+
+#background2 {
+  aspect-ratio: 1545 / 1024;
+  background-image: url('./background2.jpg');
+}
+
+#background3 {
+  aspect-ratio: 1840 / 1233;
+  background-image: url('./background3.jpg');
+}
+
+#background4 {
+  aspect-ratio: 3088 / 2316;
+  background-image: url('./background4.jpg');
+}
+
+#background5 {
+  aspect-ratio: 4032 / 3024;
+  background-image: url('./background5.jpg');
 }
 
 #fixed-ancestor {
