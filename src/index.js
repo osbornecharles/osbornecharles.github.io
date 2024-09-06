@@ -1,10 +1,17 @@
 import * as utils from './utils.js';
 
-console.log('entry script, this JS runs on the client side');
-
 const numBackgroundImages = 5;
 const backgroundImages = [];
 const backgroundElementID = 'background';
+
+const autoscroll = () => {
+  window.scrollBy(0, 1);
+}
+
+const startAutoscroll = (event) => {
+  let cancelFn = utils.smoothAnimate(autoscroll);
+  animateFn(autoscroll);
+}
 
 const getBackgroundImageData = (event) => {
   for (let img = 1; img <= numBackgroundImages; img++) {
@@ -45,19 +52,5 @@ const onScroll = () => {
 window.visualViewport.addEventListener("resize", getBackgroundImageData);
 window.visualViewport.addEventListener("resize", onScroll);
 window.addEventListener("load", getBackgroundImageData);
+window.addEventListener("load", startAutoscroll, { passive: true });
 document.addEventListener('scroll', utils.debounce(onScroll), { passive: true });
-
-/**
-function handleBackgrounds (response) {
-  console.log(response);
-  background Images = 
-}
-
-for (let img = 1; img < numBackgroundImages; img++) {
-  const backgroundsRequest = new XMLHttpRequest();
-  backgroundsRequest.addEventListener('load', handleBackgrounds);
-  const backgroundURL = `${domain}/background${img}.jpg`;
-  backgroundsRequest.open('GET', backgroundURL);
-  backgroundsRequest.send();
-}
-*/

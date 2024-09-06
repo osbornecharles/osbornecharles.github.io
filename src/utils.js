@@ -10,8 +10,23 @@ export function debounce(fn) {
   }
 };
 
+export function smoothAnimate(fn, ...params) {
+  let frame;
+  frame = requestAnimationFrame(() => {
+    fn(...params);
+    smoothAnimate(fn, ...params);
+  });
+  const cancelFn = () => {
+    if (frame) {
+      cancelAnimationFrame(frame);
+    }
+  } 
+  return cancelFn;
+};
+
 const utils = {
-  debounce
+  debounce,
+  smoothAnimate
 };
 
 export default utils;

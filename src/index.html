@@ -8,6 +8,14 @@
     <link type="text/css" rel="stylesheet" href="./style.css">
   </head>
   <body>
+    <div id="scroll-control" class="blink-scroll-control">
+      <span id="scroll-control-autoplay-label">AutoPlay</span>
+      <input type="checkbox" name="scrollcontrolswitch" id="scroll-control-switch-checkbox" tabindex="0" checked>
+      <label id="scroll-control-switch-label" for="scroll-control-switch-checkbox">
+        <span id="scroll-control-switch-label-inner"></span>
+        <span id="scroll-control-switch-label-switch"></span>
+      </label>
+    </div>
     <div id="backgrounds-container">
       <div class="background" id="background1">
       </div>
@@ -21,22 +29,22 @@
       </div>
     </div>
     <!--
-    <div id="fixed-ancestor">
-      <div id="items-container">
-        <div id="personal-info-item">
-          <div>
-            Congratulations, You Are Page Visitor Number: <span id="pageVisitsNumber"></span>
-          </div>
-        </div>
-        <div id="my-sites-item">
-          More to come ...
-        </div>
-        <div id="technical-info-item">
-          This page was created with ... 
-        </div>
-      </div>
-    </div>
-    -->
+<div id="fixed-ancestor">
+<div id="items-container">
+<div id="personal-info-item">
+<div>
+Congratulations, You Are Page Visitor Number: <span id="pageVisitsNumber"></span>
+</div>
+</div>
+<div id="my-sites-item">
+More to come ...
+</div>
+<div id="technical-info-item">
+This page was created with ... 
+</div>
+</div>
+</div>
+-->
     <script type="module" src="./index.js">
     </script>
   </body>
