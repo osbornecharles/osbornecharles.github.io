@@ -1,27 +1,39 @@
-export function debounce(fn) {
-  let frame;
+/**
+ * debounces a function so that it is fired only once per ms interval
+ * fn function to debounce
+ * ms interval over which function should only be fired once
+ * @return (...params) => {} debounce-ready version of the function
+ */
+export function debounce(fn, ms) {
+  let waiting = false;
   return (...params) => {
-    if (frame) {
-      cancelAnimationFrame(frame);
+    if (waiting === true) {
+      return; 
     }
-    frame = requestAnimationFrame(() => {
+    waiting = true;
+    setTimeout(() => {
       fn(...params);
-    })
+      waiting = false;
+    }, ms);
   }
 };
 
 export function smoothAnimate(fn, ...params) {
-  let frame;
-  frame = requestAnimationFrame(() => {
-    fn(...params);
-    smoothAnimate(fn, ...params);
-  });
+  const animateData = {};
+  smoothAnimatePrivate(fn, animateData, ...params);
   const cancelFn = () => {
-    if (frame) {
-      cancelAnimationFrame(frame);
-    }
+    requestAnimationFrame(() => {
+      cancelAnimationFrame(animateData.frame);
+    });
   } 
   return cancelFn;
+}
+
+function smoothAnimatePrivate(fn, animateData, ...params) {
+  animateData.frame = requestAnimationFrame(() => {
+    fn(...params);
+    smoothAnimatePrivate(fn, animateData, ...params);
+  });
 };
 
 const utils = {

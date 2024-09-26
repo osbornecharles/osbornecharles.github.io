@@ -3,6 +3,8 @@ import * as fs from 'node:fs';
 
 const hostname = '127.0.0.1';
 const port = 3000;
+const devEnv = 'development';
+const env = process.env.NODE_ENV;
 
 let contentEncoding;
 
@@ -34,30 +36,60 @@ function parseRequest(request) {
 const server = createServer((req, res) => {
   console.log(`request to: ${req.url}`);
   parseRequest(req);
-  fs.readFile(`${req.url}`, (err, data) => {
-    if (err) {
-      throw err;
-    }
-    if (req.url.endsWith('.html')) {
-      res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    }
-    else if (req.url.endsWith('.js')) {
-      res.setHeader('Content-Type', 'application/javascript');
-    }
-    else if (req.url.endsWith('.css')) {
-      res.setHeader('Content-Type', 'text/css');
-    }
-    else if (req.url.endsWith('.jpg')) {
-      res.setHeader('Content-Type', 'image/jpeg');
-    }
-    if (contentEncoding) {
-      res.setHeader('Content-Encoding', contentEncoding);
-    }
-    res.statusCode = 200;
-    console.log(`response header: ${res.getHeader('Content-Type')}`)
-    res.write(data);
-    res.end();
-  });
+  if (contentEncoding) {
+    res.setHeader('Content-Encoding', contentEncoding);
+  }
+  if (req.url.endsWith('.html')) {
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    fs.readFile(`${req.url}`, 'utf8', (err, data) => {
+      if (err) {
+        throw err;
+      }
+      if (env === devEnv) {
+        data = data.replace(/<meta name="environment" content="\w*"/, '<meta name="environment" content="development"');
+      }
+      res.statusCode = 200;
+      console.log(`response header: ${res.getHeader('Content-Type')}`)
+      res.write(data);
+      res.end();
+    });
+  }
+  else if (req.url.endsWith('.js')) {
+    res.setHeader('Content-Type', 'application/javascript');
+    fs.readFile(`${req.url}`, (err, data) => {
+      if (err) {
+        throw err;
+      }
+      res.statusCode = 200;
+      console.log(`response header: ${res.getHeader('Content-Type')}`)
+      res.write(data);
+      res.end();
+    });
+  }
+  else if (req.url.endsWith('.css')) {
+    res.setHeader('Content-Type', 'text/css');
+    fs.readFile(`${req.url}`, (err, data) => {
+      if (err) {
+        throw err;
+      }
+      res.statusCode = 200;
+      console.log(`response header: ${res.getHeader('Content-Type')}`)
+      res.write(data);
+      res.end();
+    });
+  }
+  else if (req.url.endsWith('.jpg')) {
+    res.setHeader('Content-Type', 'image/jpeg');
+    fs.readFile(`${req.url}`, (err, data) => {
+      if (err) {
+        throw err;
+      }
+      res.statusCode = 200;
+      console.log(`response header: ${res.getHeader('Content-Type')}`)
+      res.write(data);
+      res.end();
+    });
+  }
 });
 
 server.listen(port, hostname, () => {

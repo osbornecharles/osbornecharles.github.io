@@ -1,10 +1,12 @@
 {
-  "type":"module",
+  "type": "module",
   "scripts": {
-    "localServer": "node localDev/server.js"
+    "localServer": "NODE_ENV=development node localDev/server.js"
   },
   "imports": {
     "#root/*": "./src/*.js"
+  },
+  "dependencies": {
+    "counterapi": "^1.87.0"
   }
 }
-

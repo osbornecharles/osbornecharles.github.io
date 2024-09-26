@@ -4,10 +4,13 @@
     <link rel="icon" href="data:,">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="environment" content="production">
     <title>This Little Site of Mine</title>
     <link type="text/css" rel="stylesheet" href="./style.css">
+    <script type="module" src="./index.js"></script>
   </head>
   <body>
+    <script>0</script>
     <div id="scroll-control" class="blink-scroll-control">
       <span id="scroll-control-autoplay-label">AutoPlay</span>
       <input type="checkbox" name="scrollcontrolswitch" id="scroll-control-switch-checkbox" tabindex="0" checked>
@@ -19,33 +22,69 @@
     <div id="backgrounds-container">
       <div class="background" id="background1">
       </div>
+      <div class="background-border"></div>
+      <div class="information-section">
+        <div id="page-visits-container">
+          You Are Page Visitor Number: <span id="page-visits-number"></span>
+        </div>
+        <div id="welcome-container">
+          Welcome!
+        </div>
+      </div>
+      <div class="background-border"></div>
       <div class="background" id="background2">
       </div>
+      <div class="background-border"></div>
+      <div class="information-section">
+        <div id="website-intro">
+          This is a small website made to showcase my web development skills. The source code can be viewed <a href="https://github.com/osbornecharles/osbornecharles.github.io" target="_blank">here</a>.
+        </div> 
+        <div id="tech-specs">
+          <b>Technical Specs:</b>
+          <ul>
+            <li>100% pure Vanilla Javascript, handmade and locally sourced (by myself, with some help from the internet)</li> 
+            <li>Served up by a static fileserver hosted by Github Pages</li>
+            <li>This website is completely static, has minimal overhead and almost a complete lack of third party libraries</li>
+            <li>The only third party library used is a page view counter. To avoid having to use a code bundler and its associated overhead, this library is served from a CDN</li>
+            <li>I'm an avid CSS flexbox fan - expect a lot of display: flex</li>
+            <li>Cool code alert: background pictures can be swapped out with others of different aspect ratios, it won't break the layout</li>
+          </ul>
+        </div>
+      </div>
+      <div class="background-border"></div>
       <div class="background" id="background3">
       </div>
+      <div class="background-border"></div>
+      <div class="information-section">
+        <div id="portfolio-container">
+          Portfolio to come soon! Have an idea for a dynamic site that I want to make... In the meantime, check out my <a href="https://www.youtube.com/channel/UCwBextrekKCtoBPMY43OY4w" target="_blank">Youtube channel!</a>
+        </div>
+      </div>
+      <div class="background-border"></div>
       <div class="background" id="background4">
       </div>
+      <div class="background-border"></div>
+      <div class="information-section">
+        <div id="concluding-remarks">
+          I'm currently based in Taiwan. The following are all pictures taken from my travels - I hope you enjoy!
+        </div>  
+      </div>
+      <div class="background-border"></div>
       <div class="background" id="background5">
       </div>
+      <div class="background-border"></div>
+      <div class="background" id="background6">
+      </div>
+      <div class="background-border"></div>
+      <div class="background" id="background7">
+      </div>
+      <div class="background-border"></div>
+      <div class="background" id="background8">
+      </div>
+      <div class="background-border"></div>
+      <div class="background" id="background9">
+      </div>
+      <div class="background-border"></div>
     </div>
-    <!--
-<div id="fixed-ancestor">
-<div id="items-container">
-<div id="personal-info-item">
-<div>
-Congratulations, You Are Page Visitor Number: <span id="pageVisitsNumber"></span>
-</div>
-</div>
-<div id="my-sites-item">
-More to come ...
-</div>
-<div id="technical-info-item">
-This page was created with ... 
-</div>
-</div>
-</div>
--->
-    <script type="module" src="./index.js">
-    </script>
   </body>
 </html>
